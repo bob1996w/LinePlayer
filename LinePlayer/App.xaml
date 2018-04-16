@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:LinePlayer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="./Resources/Strings/lang-en_US.xaml"/>
     </Application.Resources>
 </Application>

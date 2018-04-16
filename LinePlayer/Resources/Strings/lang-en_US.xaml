@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:LinePlayer.Resources.Strings"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <!-- Tooltips -->
+    <s:String x:Key="s_tt_play">Play</s:String>
+    <s:String x:Key="s_tt_stop">Stop</s:String>
+    <s:String x:Key="s_tt_vol" xml:space="preserve">LButton: Open volume control&#x0a;RButton: Toggle Mute</s:String>
+    <s:String x:Key="s_tt_menu">Menu</s:String>
+    <s:String x:Key="s_tt_exit">Exit LinePlayer</s:String>
+    
+    <!-- Open File Dialog -->
+    <s:String x:Key="s_ofd_filter">Music Files (*.mp3; *.flac)|*.mp3; *.flac;</s:String>
+    
+    <!-- Menu -->
+    <!-- Menu/File -->
+    <s:String x:Key="s_menu_file">_File</s:String>
+    <s:String x:Key="s_menu_file_open">_Open File</s:String>
+    <!-- Menu/Control -->
+    <s:String x:Key="s_menu_control">_Control</s:String>
+    <!-- Menu/Option -->
+    <s:String x:Key="s_menu_option">_Settings</s:String>
+    <s:String x:Key="s_menu_option_language">_Language</s:String>
+    <s:String x:Key="s_menu_option_theme">_Theme</s:String>
+    <s:String x:Key="s_menu_option_theme_light">_Light</s:String>
+    <s:String x:Key="s_menu_option_theme_dark">_Dark</s:String>
+    <!-- Menu/Exit -->
+    <s:String x:Key="s_menu_exit">E_xit</s:String>
+</ResourceDictionary>

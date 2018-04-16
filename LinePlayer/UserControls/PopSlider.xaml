@@ -1,0 +1,23 @@
+﻿<UserControl x:Name="MousePopSlider"
+             x:Class="LinePlayer.UserControls.PopSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LinePlayer.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="35" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/Styles/Light.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Border x:Name="background_border" Background="{DynamicResource BackgroundColor}" MouseLeftButtonDown="slider_border_MouseLeftButtonDown"
+                MouseEnter="slider_border_MouseEnter" MouseLeave="slider_border_MouseLeave" SizeChanged="slider_border_SizeChanged"
+                MouseMove="slider_border_MouseMove" PreviewMouseLeftButtonUp="slider_border_PreviewMouseLeftButtonUp">
+            <Grid>
+                <Border x:Name="slider_border" ></Border>
+                <Label x:Name="slider_label" Padding="8">TestLabel</Label>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
