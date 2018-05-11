@@ -10,7 +10,7 @@
     <s:String x:Key="s_tt_exit">Exit LinePlayer</s:String>
     
     <!-- Open File Dialog -->
-    <s:String x:Key="s_ofd_filter">Music Files (*.mp3; *.flac)|*.mp3; *.flac;</s:String>
+    <s:String x:Key="s_ofd_filter">Supported Files|*.mp3;*.mpeg3;*.wav;*.wave;*.flac;*.fla;*.aiff;*.aif;*.aifc;*.aac;*.adt;*.adts;*.m2ts;*.mp2;*.3g2;*.3gp2;*.3gp;*.3gpp;*.m4a;*.m4v;*.mp4v;*.mp4;*.mov;*.asf;*.wm;*.wmv;*.wma;*.mp1;*.avi;*.ac3;*.ec3</s:String>
     
     <!-- Menu -->
     <!-- Menu/File -->
