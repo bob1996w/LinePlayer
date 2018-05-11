@@ -50,13 +50,16 @@ namespace LinePlayer
         public bool slideOutPlaying = false;
 
         // lyrics
-        public List<LyricLine> Lyrics;
+        public LRCParser lrcParser;
+        public int nowLyricIndex;
         public bool display_lyric = false;
 
         // current playing music tag
         public TagLib.Tag currentTag;
         public MainWindow()
         {
+            var args = Environment.GetCommandLineArgs();
+            bool hasFilePathInArgs = args.Length > 1 && args.Length < 3;
             InitializeComponent();
             NotifyAllProperties();
             playerModule.PlaybackStopped += PlayerModule_PlaybackStopped;
@@ -64,9 +67,13 @@ namespace LinePlayer
             {
                 while(true)
                 {
-                    while (updatePositionPause) { }
+                    while (updatePositionPause) { Thread.Sleep(10); }
                     NotifyPropertyChanged(nameof(_position));
                     NotifyPropertyChanged(nameof(Label_time_get));
+                    if (display_lyric)
+                    {
+                        
+                    }
                     Thread.Sleep(10);
                 }
             });
@@ -104,6 +111,8 @@ namespace LinePlayer
             c_slider.HoverChangedEvent += (object sender, double value) => {
                 c_slider.LabelText = TimeSpan.FromMilliseconds(value).ToString(@"mm\:ss") + " / " + TimeSpan.FromMilliseconds(_length).ToString(@"mm\:ss");
             };
+
+            if (hasFilePathInArgs) LoadFileAndPlay(args[1]);
         }
         
         private void SlideInEffect_Completed(object sender, EventArgs e)
@@ -192,11 +201,14 @@ namespace LinePlayer
             // lyrics
             Regex rgx = new Regex(@"\.[a-zA-Z0-9_]+$");
             var lrcPath = rgx.Replace(filepath, ".lrc");
-            Lyrics = LRCParser.ParseLyricInstant(lrcPath);
+            //Lyrics = LRCParser.ParseLyricInstant(lrcPath);
+            lrcParser = new LRCParser(lrcPath);
+            /*
             if(Lyrics.Count > 0)
             {
                 display_lyric = true;
             }
+            */
             Play();
         }
 
@@ -357,5 +369,6 @@ namespace LinePlayer
             main_menu.PlacementTarget = this;
             main_menu.IsOpen = true;
         }
+
     }
 }

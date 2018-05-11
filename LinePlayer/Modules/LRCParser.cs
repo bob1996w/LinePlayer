@@ -111,8 +111,66 @@ namespace LinePlayer.Modules
 
         private void Parse()
         {
+            _lyrics = new List<LyricLine>();
+            if (!File.Exists(Path))
+            {
+                return;
+            }
+            var reg_timeStamp = new Regex(@"\[\d*\:\d*\.\d*\]");
 
+            string[] fileData = File.ReadAllLines(Path);
+            foreach (var fileLine in fileData)
+            {
+                var matches = reg_timeStamp.Matches(fileLine);
+                var nowLyric = reg_timeStamp.Replace(fileLine, "");
+                foreach (Match m in matches)
+                {
+                    var timeTag = m.Value.Trim("[]".ToCharArray());
+                    bool ThisOK = true;
+                    TimeSpan nowTime = TimeSpan.Zero;
+                    //Console.WriteLine($"{m.Index}: {m.Length}, {m.Value}");
+                    if (TimeSpan.TryParseExact(timeTag, @"mm\:ss", null, out TimeSpan result))
+                        nowTime = result;
+                    else if (TimeSpan.TryParseExact(timeTag, @"mm\:ss\.f", null, out TimeSpan result1))
+                        nowTime = result1;
+                    else if (TimeSpan.TryParseExact(timeTag, @"mm\:ss\.ff", null, out TimeSpan result2))
+                        nowTime = result2;
+                    else if (TimeSpan.TryParseExact(timeTag, @"mm\:ss\.fff", null, out TimeSpan result3))
+                        nowTime = result3;
+                    else if (TimeSpan.TryParseExact(timeTag, @"mm\:ss\.ffff", null, out TimeSpan result4))
+                        nowTime = result4;
+                    else if (TimeSpan.TryParseExact(timeTag, @"mm\:ss\.fffff", null, out TimeSpan result5))
+                        nowTime = result5;
+                    else
+                    {
+                        ThisOK = false;
+                        throw new Exception("Bad time tag format in LRC file.");
+                    }
+                    if (ThisOK)
+                    {
+                        _lyrics.Add(new LyricLine { Time = nowTime, Lyric = nowLyric });
+                    }
+                }
+            }
         }
-        
+        public int getIndexFromTime(TimeSpan now)
+        {
+            int place = 0;
+            for (int i = 0; i < _lyrics.Count; i++)
+            {
+                if (now >= _lyrics[i].Time){
+                    place = i;
+                    break;
+                }
+
+            }
+            return place;
+        }
+        public LyricLine this[int index]{
+            get
+            {
+                return _lyrics[index];
+            }
+        }
     }
 }
